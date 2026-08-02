@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - Piloto</title>
+    <script src="config.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #09090b; color: #f4f4f5; padding: 60px 20px; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; background: #18181b; padding: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+        h1 { color: #4f46e5; margin-top: 0; }
+        h2 { color: #f4f4f5; margin-top: 32px; font-size: 1.25rem; }
+        p, ul { color: #a1a1aa; }
+        a { color: #4f46e5; }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            trackEvent('page_view');
+            
+            document.getElementById('controller-name').innerText = CONFIG.CONTROLLER_NAME || "[NOME NÃO CONFIGURADO]";
+            document.getElementById('contact-email').innerText = CONFIG.PRIVACY_CONTACT_EMAIL || "[E-MAIL NÃO CONFIGURADO]";
+            document.getElementById('contact-email').href = `mailto:${CONFIG.PRIVACY_CONTACT_EMAIL}`;
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Política de Privacidade do Piloto</h1>
+        <p>Última atualização: Julho de 2026</p>
+
+        <h2>1. Responsável pelo Tratamento</h2>
+        <p>O controlador responsável por este piloto e coleta de dados é <strong id="controller-name"></strong>.</p>
+
+        <h2>2. Dados Coletados e Finalidade</h2>
+        <p>Coletamos apenas informações fornecidas voluntariamente para avaliar a demanda por este projeto e comunicar os próximos passos (ex: e-mail, nome, volume de vendas). Estes dados serão utilizados exclusivamente para envio de material solicitado e comunicação do status do piloto.</p>
+
+        <h2>3. Armazenamento e Serviço Utilizado</h2>
+        <p>Os leads e intenções de compra são enviados diretamente a um serviço de integração de fluxos (webhook privado) sob controle estrito do Responsável. Os dados não serão vendidos, alugados ou compartilhados indevidamente com terceiros para finalidades externas a este projeto.</p>
+        
+        <h2>4. Prazo de Conservação</h2>
+        <p>Os dados serão armazenados apenas durante o período de avaliação e desenvolvimento deste piloto, sendo excluídos definitivamente após a conclusão dos testes ou o encerramento do projeto, o que ocorrer primeiro, respeitando o prazo máximo de 1 ano para fins de auditoria de interesse.</p>
+
+        <h2>5. Documentos Sensíveis</h2>
+        <p>Nesta fase inicial da landing page, <strong>não realizamos upload de documentos sensíveis, comprovantes de clientes ou dados de cartões</strong>. Qualquer envio futuro de evidências para elaboração real do dossiê será regido por termos de serviço específicos com sigilo reforçado.</p>
+
+        <h2>6. Procedimento de Exclusão e Contato</h2>
+        <p>Você tem o direito de solicitar o acesso, correção ou exclusão total dos seus dados da nossa base de testes a qualquer momento. Para exercer seus direitos, envie um e-mail solicitando o descadastramento para o contato oficial:</p>
+        <p>📧 <a id="contact-email" href="#"></a></p>
+
+        <p style="margin-top: 40px;"><a href="index.html">← Voltar à página principal</a></p>
+    </div>
+</body>
+</html>

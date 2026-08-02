@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link id="dynamic-favicon" rel="icon" type="image/png" href="/logo-icon.png?v=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="QYGAWpleqJFRtRb9dtqxNqH7D7aqYxCpp64lUYR08dU" />
+    <title id="dynamic-title">Tax Managers | Inteligência Fiscal Preditiva</title>
+    <script>
+      (function() {
+        const hostname = window.location.hostname;
+        const pathname = window.location.pathname;
+        const isTodeacordo = hostname.includes('todeacordo') || pathname.startsWith('/market') || pathname.startsWith('/book');
+        
+        if (isTodeacordo) {
+          document.getElementById('dynamic-title').textContent = 'ToDeAcordo | Plataforma de Negócios';
+          // Use a generic modern SVG icon for ToDeAcordo or clear it so it doesn't show TM
+          document.getElementById('dynamic-favicon').href = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🤝</text></svg>';
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

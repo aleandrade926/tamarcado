@@ -1,0 +1,281 @@
+[chat_agent supabase mode] { hasSupabaseUrl: true, hasServiceRole: true, usingAdminClient: true }
+
+--- Running Test: 1. CFO sem conexão ---
+[personalize_agent body keys] [ 'lead' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: buyer
+Should Pitch: false
+Short Note: Olá, sou um especialista em soluções tributárias....
+Custom Field Preserved: false
+
+--- Running Test: 2. Controller com conexão recente ---
+[personalize_agent body keys] [ 'lead' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: buyer
+Should Pitch: false
+Short Note: Olá, sou o Copiloto de Customer Discovery e SPIN S...
+Custom Field Preserved: false
+
+--- Running Test: 3. Controller com conexão antiga ---
+[personalize_agent body keys] [ 'lead' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: buyer
+Should Pitch: false
+Short Note: Reconectando com um antigo contato...
+Custom Field Preserved: false
+
+--- Running Test: 4. Sócio de consultoria tributária ---
+[personalize_agent body keys] [ 'lead' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: potential_competitor
+Should Pitch: false
+Short Note: 
+Custom Field Preserved: false
+
+--- Running Test: 5. Parceiro com risco concorrencial alto ---
+[personalize_agent body keys] [ 'lead', 'context_extra' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: potential_partner
+Should Pitch: false
+Short Note: Olá, sou um especialista em soluções tributárias....
+Custom Field Preserved: false
+
+--- Running Test: 6. Advogado tributário ambíguo ---
+[personalize_agent body keys] [ 'lead' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: potential_partner
+Should Pitch: false
+Short Note: Olá, sou um especialista em soluções tributárias...
+Custom Field Preserved: false
+
+--- Running Test: 7. Perfil sem cargo ---
+[personalize_agent body keys] [ 'lead' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: insufficient_information
+Should Pitch: false
+Short Note: Olá, gostaria de me conectar e saber mais sobre vo...
+Custom Field Preserved: false
+
+--- Running Test: 8. Perfil sem empresa ---
+[personalize_agent body keys] [ 'lead' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: insufficient_information
+Should Pitch: false
+Short Note: Olá, gostaria de me conectar e saber mais sobre vo...
+Custom Field Preserved: false
+
+--- Running Test: 9. Lead que reconheceu o problema ---
+[personalize_agent body keys] [ 'lead' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: buyer
+Should Pitch: false
+Short Note: Olá, sou o Copiloto de Customer Discovery...
+Custom Field Preserved: false
+
+--- Running Test: 10. Lead que pediu material ---
+[personalize_agent body keys] [ 'lead' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: buyer
+Should Pitch: false
+Short Note: Olá, sou o Copiloto de Customer Discovery e SPIN S...
+Custom Field Preserved: false
+
+--- Running Test: 11. Lead que pediu proposta ---
+[personalize_agent body keys] [ 'lead' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: buyer
+Should Pitch: false
+Short Note: Olá, sou o Copiloto de Customer Discovery e SPIN S...
+Custom Field Preserved: false
+
+--- Running Test: 12. Correção humana concorrente (Chat) ---
+[chat_agent timeline debug] { lead_id: 12, interactions_count: 0, interactions_preview: [] }
+[chat_agent request] {
+  lead_id: 12,
+  hasLead: true,
+  chatHistoryLength: 0,
+  timelineLength: 0,
+  promptLength: 10958,
+  hasGroqKey: true
+}
+Status: 200
+Content: CLASSIFICAÇÃO DO CONTATO: Concorrente
+ESTÁGIO SPIN / DISCOVERY: Inicial
+ALERTAS ESTRATÉGICOS: Risco ...
+
+--- Running Test: 13. JSON malformado ---
+[personalize_agent body keys] [ 'lead', 'context_extra' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+[personalize_agent] llama-3.3-70b-versatile SyntaxError: Expected ',' or '}' after property value in JSON at position 1480 (line 38 column 2)
+    at JSON.parse (<anonymous>)
+    at callGroq (file:///C:/Users/Alexandre/masterkey-frontend/api/personalize_agent.js:377:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async handler (file:///C:/Users/Alexandre/masterkey-frontend/api/personalize_agent.js:537:22)
+    at async runTest (file:///C:/Users/Alexandre/masterkey-frontend/test_phase0.mjs:51:10)
+    at async runAll (file:///C:/Users/Alexandre/masterkey-frontend/test_phase0.mjs:82:3)
+Status: 200
+Class: insufficient_information
+Should Pitch: false
+Short Note: 
+Custom Field Preserved: false
+
+--- Running Test: 14. JSON válido com enum inválido ---
+[personalize_agent body keys] [ 'lead', 'context_extra' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+[personalize_agent] llama-3.3-70b-versatile Error: JSON_SCHEMA_ERROR: Enum de lead_classification inválido.
+    at handler (file:///C:/Users/Alexandre/masterkey-frontend/api/personalize_agent.js:546:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async runTest (file:///C:/Users/Alexandre/masterkey-frontend/test_phase0.mjs:51:10)
+    at async runAll (file:///C:/Users/Alexandre/masterkey-frontend/test_phase0.mjs:83:3)
+Status: 200
+Class: schema_validation_failed
+Should Pitch: false
+Short Note: Olá JSON Enum Invalido, vi sua atuação como CFO em...
+Custom Field Preserved: false
+
+--- Running Test: 16. Metadata preexistente ---
+[personalize_agent body keys] [ 'lead' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: insufficient_information
+Should Pitch: false
+Short Note: Olá, gostaria de me conectar e saber mais sobre su...
+Custom Field Preserved: true
+
+--- Running Test: 17. Modelo retornando mensagem para concorrente ---
+[personalize_agent body keys] [ 'lead', 'context_extra' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: potential_competitor
+Should Pitch: false
+Short Note: 
+Custom Field Preserved: false
+
+--- Running Test: 18. Campo de conexão antiga sem evidência ---
+[personalize_agent body keys] [ 'lead' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: insufficient_information
+Should Pitch: false
+Short Note: Olá, gostaria de conhecer melhor sobre sua empresa...
+Custom Field Preserved: false
+
+--- Running Test: 19. Mensagem acima do limite ---
+[personalize_agent body keys] [ 'lead', 'context_extra' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: potential_partner
+Should Pitch: false
+Short Note: Gostaria de me conectar e aprender mais sobre seu ...
+Custom Field Preserved: false
+
+--- Running Test: 20. Reexecução após correção humana ---
+[personalize_agent body keys] [ 'lead' ]
+[personalize_agent attachments] {
+  has_profile_image: false,
+  has_contact_image: false,
+  profile_image_size: 0,
+  contact_image_size: 0
+}
+Status: 200
+Class: potential_competitor
+Should Pitch: false
+Short Note: 
+Custom Field Preserved: false
+Done

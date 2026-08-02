@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organize sua contestação de chargeback sem perder horas.</title>
+    <script src="config.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary: #4f46e5;
+            --primary-glow: rgba(79, 70, 229, 0.4);
+            --secondary: #10b981;
+            --bg-dark: #09090b;
+            --bg-card: rgba(24, 24, 27, 0.7);
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --danger: #ef4444;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .text-muted {
+            color: var(--text-muted) !important;
+        }
+
+        .bg-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            top: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(to right, #fff, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px var(--primary-glow);
+            background: #4338ca;
+        }
+
+        .btn-primary:disabled, .btn-primary.disabled {
+            background: #4b5563;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 64px;
+            font-weight: 800;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-bottom: 100px;
+        }
+
+        .step-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--primary);
+            opacity: 0.3;
+            margin-bottom: -10px;
+            line-height: 1;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .dossier-preview {
+            margin: 0 auto 100px;
+            position: relative;
+            padding: 1px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+            max-width: 800px;
+        }
+
+        .dossier-content {
+            background: #18181b;
+            border-radius: 23px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .dossier-badge {
+            position: absolute;
+            top: -15px;
+            right: 32px;
+            background: var(--primary);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .mock-doc {
+            border: 1px dashed var(--border-glass);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 16px;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .mock-doc-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+        }
+
+        .cta-section {
+            text-align: center;
+            margin: 100px 0;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 18px 24px;
+            border-radius: 99px;
+            border: 1px solid var(--border-glass);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            outline: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .email-input:focus {
+            border-color: var(--primary);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .privacy-consent {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 16px;
+            text-align: center;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .privacy-consent a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .pricing-card {
+            max-width: 400px;
+            margin: 0 auto 100px;
+            text-align: center;
+            border: 1px solid rgba(79, 70, 229, 0.5);
+        }
+
+        .price {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin: 24px 0;
+            line-height: 1;
+        }
+
+        .price span {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .footer {
+            border-top: 1px solid var(--border-glass);
+            padding: 60px 0;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .disclaimer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .disclaimer-item {
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.1);
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+        }
+
+        .disclaimer-item span {
+            display: block;
+            color: var(--danger);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--border-glass);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .email-form {
+                flex-direction: column;
+            }
+            .hero {
+                padding: 80px 0 40px;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            trackEvent('page_view');
+
+            const buyButtons = document.querySelectorAll('.buy-btn');
+            buyButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    trackEvent('buy_click', { preco_ofertado: 49.00, currency: 'BRL' });
+                    
+                    if (!CONFIG.CHECKOUT_URL) {
+                        document.getElementById('intentModal').style.display = 'flex';
+                    } else {
+                        trackEvent('checkout_started', { preco_ofertado: 49.00, currency: 'BRL' }, () => {
+                            window.location.href = preserveUTMs(CONFIG.CHECKOUT_URL);
+                        });
+                    }
+                });
+            });
+
+            // Fechar Modal
+            document.getElementById('closeModalBtn').addEventListener('click', () => {
+                document.getElementById('intentModal').style.display = 'none';
+            });
+
+            // Intent Form (Buy Form Modal)
+            const intentForm = document.getElementById('intent-form');
+            if (intentForm) {
+                intentForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    if (!CONFIG.LEAD_ENDPOINT) {
+                        alert("O sistema de inscrições está temporariamente indisponível.");
+                        return;
+                    }
+                    const btn = intentForm.querySelector('button[type="submit"]');
+                    const msg = document.getElementById('intent-msg');
+                    btn.disabled = true;
+                    btn.innerText = "Enviando...";
+
+                    try {
+                        const payload = {
+                            lead_type: "purchase_interest",
+                            preco_ofertado: 49,
+                            name: document.getElementById('intent-name').value,
+                            email: document.getElementById('intent-email').value,
+                            whatsapp: document.getElementById('intent-whatsapp').value,
+                            chargeback_volume: document.getElementById('intent-volume').value,
+                            ...getAttribution()
+                        };
+                        const response = await fetch(CONFIG.LEAD_ENDPOINT, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        
+                        if (response.ok) {
+                            intentForm.style.display = 'none';
+                            msg.style.display = 'block';
+                            msg.style.color = 'var(--secondary)';
+                            msg.innerText = "Interesse registrado com sucesso! Entraremos em contato assim que liberarmos novas vagas.";
+                        } else {
+                            throw new Error('Falha na resposta.');
+                        }
+                    } catch (err) {
+                        console.error('Error saving intent lead', err);
+                        msg.style.display = 'block';
+                        msg.style.color = 'var(--danger)';
+                        msg.innerText = "Ocorreu um erro ao salvar seu interesse. Por favor, tente novamente.";
+                    } finally {
+                        btn.disabled = false;
+                        btn.innerText = "Enviar Interesse";
+                    }
+                });
+            }
+
+            // Checklist Form
+            const checklistForm = document.getElementById('checklist-form');
+            if (checklistForm) {
+                checklistForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('checklist-email').value;
+                    if (email) {
+                        if (!CONFIG.LEAD_ENDPOINT) {
+                            alert("O checklist ainda não está disponível no momento. Em breve enviaremos atualizações.");
+                            return;
+                        }
+
+                        const btn = checklistForm.querySelector('button[type="submit"]');
+                        btn.disabled = true;
+                        btn.innerText = "Aguarde...";
+
+                        try {
+                            const payload = {
+                                lead_type: "checklist_download",
+                                email: email,
+                                ...getAttribution()
+                            };
+                            const response = await fetch(CONFIG.LEAD_ENDPOINT, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(payload)
+                            });
+                            
+                            if (response.ok) {
+                                trackEvent('checklist_lead', { lead_captured: true }, () => {
+                                    window.location.href = preserveUTMs('obrigado.html');
+                                });
+                            } else {
+                                throw new Error('Falha na resposta do servidor.');
+                            }
+                        } catch (err) {
+                            console.error('Error saving lead', err);
+                            alert("Ocorreu um erro ao salvar seu e-mail. Os dados preenchidos foram preservados para que você possa tentar novamente.");
+                        } finally {
+                            btn.disabled = false;
+                            btn.innerText = "Baixar Checklist";
+                        }
+                    }
+                });
+            }
+
+            // Checklist Scroll Button
+            const scrollChecklistBtn = document.getElementById('scroll-checklist');
+            if(scrollChecklistBtn) {
+                scrollChecklistBtn.addEventListener('click', () => {
+                    trackEvent('checklist_click');
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <h1>Organize sua contestação de chargeback sem perder horas.</h1>
+            <p class="text-muted">Envie os documentos da venda e receba um dossiê organizado, assistido por IA, para encaminhar à adquirente.</p>
+            
+            <div class="hero-actions">
+                <button class="btn btn-primary buy-btn">Testar agora por R$ 49</button>
+                <a href="#checklist" id="scroll-checklist" class="btn" style="background: rgba(255,255,255,0.1); color: white;">Baixar Checklist Gratuito</a>
+            </div>
+        </section>
+
+        <!-- 3 Passos -->
+        <section class="steps-grid">
+            <div class="glass-card">
+                <div class="step-number">01</div>
+                <h3 class="step-title">Envie os documentos</h3>
+                <p class="text-muted">Analisamos os documentos enviados e identificamos as informações disponíveis para organização.</p>
+            </div>
+            <div class="glass-card">
+                <div class="step-number">02</div>
+                <h3 class="step-title">Organização assistida</h3>
+                <p class="text-muted">Organizamos os comprovantes, rastreios, comunicações e demais evidências que você disponibilizar.</p>
+            </div>
+            <div class="glass-card">
+                <div class="step-number">03</div>
+                <h3 class="step-title">Dossiê pronto</h3>
+                <p class="text-muted">Receba um PDF organizado profissionalmente, pronto para ser anexado na plataforma da sua adquirente.</p>
+            </div>
+        </section>
+
+        <!-- Modelo Demonstrativo -->
+        <section>
+            <h2 class="section-title">Como fica o Dossiê?</h2>
+            <div class="dossier-preview">
+                <div class="dossier-badge">Modelo de Exemplo</div>
+                <div class="dossier-content">
+                    <div style="border-bottom: 1px solid var(--border-glass); padding-bottom: 24px; margin-bottom: 24px;">
+                        <h3 style="margin: 0 0 8px 0; color: white;">Defesa de Chargeback - Transação #99321</h3>
+                        <p class="text-muted" style="margin: 0;">Gerado em 20 de Julho de 2026</p>
+                    </div>
+
+                    <div class="mock-doc">
+                        <div class="mock-doc-header">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <strong>Evidência 1: Comprovação de Entrega (AR)</strong>
+                        </div>
+                        <p class="text-muted" style="font-size: 0.875rem; margin: 0;">Código de rastreio Correios NX123456789BR, assinado pelo titular do cartão às 14:32 do dia 15/07.</p>
+                    </div>
+
+                    <div class="mock-doc">
+                        <div class="mock-doc-header">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <strong>Evidência 2: Logs de Acesso e IP</strong>
+                        </div>
+                        <p class="text-muted" style="font-size: 0.875rem; margin: 0;">Match de IP da compra com o IP de acessos anteriores à conta nos últimos 6 meses.</p>
+                    </div>
+
+                    <div class="mock-doc">
+                        <div class="mock-doc-header">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <strong>Evidência 3: Histórico de Conversa (WhatsApp)</strong>
+                        </div>
+                        <p class="text-muted" style="font-size: 0.875rem; margin: 0;">Confirmação de endereço realizada via WhatsApp (+55 11 99999-9999) pelo mesmo titular.</p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 32px;">
+                        <button class="btn" style="background: rgba(255,255,255,0.05); color: var(--text-muted); cursor: not-allowed;" disabled aria-label="Botão desabilitado no exemplo">Baixar PDF (Bloqueado no Exemplo)</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Oferta Piloto -->
+        <section id="pricing">
+            <div class="glass-card pricing-card">
+                <h3 style="font-size: 1.5rem; margin: 0 0 16px 0;">Dossiê Unitário</h3>
+                <p class="text-muted" style="margin: 0;">Pague apenas quando precisar contestar.</p>
+                <div class="price">R$ 49<span>/dossiê</span></div>
+                <button class="btn btn-primary buy-btn" style="width: 100%; box-sizing: border-box;">Gerar Dossiê Agora</button>
+                <p class="text-muted" style="font-size: 0.75rem; margin-top: 16px;">Piloto com entrega em até 1 dia útil.</p>
+            </div>
+        </section>
+
+        <!-- Checklist -->
+        <section id="checklist" class="cta-section glass-card" style="background: rgba(79, 70, 229, 0.1); border-color: rgba(79, 70, 229, 0.2);">
+            <h2 style="font-size: 2rem; margin-bottom: 16px;">Ainda não quer comprar?</h2>
+            <p class="text-muted" style="margin-bottom: 32px; font-size: 1.125rem;">Baixe nosso Checklist Gratuito de Evidências e veja os documentos geralmente solicitados em uma contestação.</p>
+            <form id="checklist-form" class="email-form">
+                <label for="checklist-email" class="visually-hidden">Seu e-mail profissional</label>
+                <input type="email" id="checklist-email" class="email-input" placeholder="Seu melhor e-mail profissional" required aria-required="true">
+                <button type="submit" class="btn btn-primary">Baixar Checklist</button>
+            </form>
+            <p class="privacy-consent">
+                Ao enviar seu e-mail, você concorda em receber o checklist e comunicações sobre este piloto. Não venderemos seus dados. Eles poderão ser processados pelos fornecedores necessários à operação deste piloto, conforme a <a href="privacidade.html">Política de Privacidade</a>.
+            </p>
+        </section>
+
+        <!-- Disclaimer & Footer -->
+        <footer class="footer">
+            <div class="disclaimer-grid">
+                <div class="disclaimer-item">
+                    <span>Atenção à Função</span>
+                    Este produto atua exclusivamente na organização de evidências fornecidas por você ou pelos seus sistemas. Não há coleta de documentos sensíveis nesta página.
+                </div>
+                <div class="disclaimer-item">
+                    <span>Sem Garantia de Sucesso</span>
+                    A decisão final é da adquirente e do banco emissor. Não garantimos a reversão do chargeback.
+                </div>
+                <div class="disclaimer-item">
+                    <span>Não é Serviço Jurídico</span>
+                    Este serviço piloto não substitui a orientação de um advogado e não representa o lojista legalmente.
+                </div>
+                <div class="disclaimer-item">
+                    <span>Responsabilidade</span>
+                    A veracidade das informações e documentos anexados é de inteira responsabilidade do usuário (lojista).
+                </div>
+            </div>
+            <p>&copy; 2026 Dossiê de Chargeback. Todos os direitos reservados. (Página de teste — oferta piloto)</p>
+        </footer>
+    </div>
+
+    <!-- Modal de Intenção (quando link não configurado) -->
+    <div class="modal-overlay" id="intentModal">
+        <div class="modal-content" style="text-align: left;">
+            <h3 style="margin-top: 0; text-align: center;">Lista de Espera do Piloto</h3>
+            <p class="text-muted" style="text-align: center;">Ainda estamos configurando nosso sistema de pagamentos. Preencha seus dados para receber o aviso de liberação.</p>
+            <form id="intent-form" style="display: flex; flex-direction: column; gap: 12px; margin-top: 24px;">
+                <input type="text" id="intent-name" class="email-input" placeholder="Seu nome" required aria-required="true" style="width: 100%; box-sizing: border-box; padding: 12px 20px;">
+                <input type="email" id="intent-email" class="email-input" placeholder="Seu melhor e-mail" required aria-required="true" style="width: 100%; box-sizing: border-box; padding: 12px 20px;">
+                <input type="tel" id="intent-whatsapp" class="email-input" placeholder="WhatsApp (opcional)" style="width: 100%; box-sizing: border-box; padding: 12px 20px;">
+                <label for="intent-volume" class="text-muted" style="font-size: 0.875rem;">Quantos chargebacks sua loja recebe por mês? (opcional)</label>
+                <input type="text" id="intent-volume" class="email-input" style="width: 100%; box-sizing: border-box; padding: 12px 20px;">
+                
+                <button type="submit" class="btn btn-primary" style="margin-top: 8px;">Enviar Interesse</button>
+                <button type="button" id="closeModalBtn" class="btn" style="background: transparent; color: var(--text-muted); padding: 8px;">Cancelar</button>
+            </form>
+            <p class="privacy-consent" style="margin-top: 16px;">
+                Ao enviar seus dados, você concorda em receber informações sobre este piloto. Consulte a <a href="privacidade.html">Política de Privacidade</a>.
+            </p>
+            <p id="intent-msg" style="display: none; margin-top: 16px; text-align: center;"></p>
+        </div>
+    </div>
+</body>
+</html>

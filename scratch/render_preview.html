@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>Tax Managers CRM — Visual Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #08080a; color: #cbd5e1; font-family: ui-sans-serif, system-ui, sans-serif; }
+  </style>
+</head>
+<body class="p-6">
+  <!-- 1. Aba Fila Fruta Baixa e Menu Lateral -->
+  <div id="screenshot-1" class="mb-12 border border-white/10 rounded-xl p-6 bg-[#0b0b0f]">
+    <h2 class="text-xs uppercase tracking-widest text-cyan-400 font-bold mb-4">Screenshot 1: Aba Fila Fruta Baixa no Menu Lateral</h2>
+    <div class="flex gap-6">
+      <!-- Menu Lateral -->
+      <div class="w-64 bg-[#08080a] border border-white/10 rounded-xl p-3 space-y-1 shrink-0">
+        <div class="px-3 py-2 text-xs font-semibold text-slate-400">NAVEGAÇÃO DO PAINEL</div>
+        <div class="px-4 py-2.5 rounded-lg text-sm text-slate-400">Operação Hoje</div>
+        <div class="px-4 py-2.5 rounded-lg text-sm text-slate-400">Visão Geral</div>
+        <div class="px-4 py-2.5 rounded-lg text-sm text-slate-400">Gestão de Leads</div>
+        <div class="px-4 py-2.5 rounded-lg text-sm text-slate-400">Comissões e Splits</div>
+        <div class="px-4 py-2.5 rounded-lg text-sm font-semibold bg-blue-600/20 text-cyan-400 border-l-2 border-cyan-400 flex items-center gap-2">
+          <span>✨ Fila Fruta Baixa</span>
+        </div>
+      </div>
+      <!-- Conteúdo Principal -->
+      <div class="flex-1 bg-[#0b0b0f] border border-white/5 rounded-xl p-6">
+        <h3 class="text-lg font-bold text-white">✨ Fila Fruta Baixa (Quarentena Ranqueada)</h3>
+        <p class="text-xs text-slate-400 mt-1">Leads qualificados ranqueados por score comercial. Acesso liberado para todos os parceiros.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Subaba Oportunidades Visível -->
+  <div id="screenshot-2" class="mb-12 border border-white/10 rounded-xl p-6 bg-[#0b0b0f]">
+    <h2 class="text-xs uppercase tracking-widest text-cyan-400 font-bold mb-4">Screenshot 2: Subaba "Oportunidades — Receita Sintonia" Visível</h2>
+    <div class="flex justify-between items-center bg-[#111116] p-4 rounded-xl border border-white/10">
+      <div>
+        <h4 class="text-sm font-bold text-white">Fila Fruta Baixa (Quarentena Ranqueada)</h4>
+        <p class="text-xs text-slate-400">Exibindo 50 leads priorizados a partir de uma amostra carregada.</p>
+      </div>
+      <div class="flex gap-2">
+        <div class="flex gap-1 bg-[#08080a] p-1 rounded-lg border border-cyan-500/30">
+          <button class="px-3 py-1.5 rounded text-xs text-slate-400">Fila Ranqueada</button>
+          <button class="px-3 py-1.5 rounded text-xs font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 flex items-center gap-1">
+            <span>✨ Oportunidades</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Módulo Oportunidades Aberto -->
+  <div id="screenshot-3" class="border border-white/10 rounded-xl p-6 bg-[#0b0b0f] space-y-4">
+    <h2 class="text-xs uppercase tracking-widest text-cyan-400 font-bold mb-2">Screenshot 3: Módulo Oportunidades Aberto em Modo Leitura</h2>
+    
+    <!-- Banner Read Only -->
+    <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg px-4 py-2.5 flex items-center justify-between text-amber-300 text-xs">
+      <span><strong>Versão inicial em modo leitura</strong> — alterações não são persistidas nesta etapa.</span>
+      <span class="bg-amber-500/20 px-2 py-0.5 rounded font-mono text-[10px]">READ ONLY</span>
+    </div>
+
+    <!-- Header do Módulo -->
+    <div class="bg-[#111116] border border-white/10 rounded-xl p-5">
+      <span class="text-[10px] font-bold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded uppercase border border-cyan-500/20">Oportunidade Ativa MVP</span>
+      <h3 class="text-lg font-bold text-white mt-1">✨ Tax Managers — Diagnóstico Receita Sintonia</h3>
+      
+      <!-- Resumo dos 4 Níveis -->
+      <div class="grid grid-cols-4 gap-3 mt-4 pt-4 border-t border-white/5">
+        <div class="bg-[#08080a] border border-emerald-500/20 p-2.5 rounded-lg text-center">
+          <span class="text-[11px] text-slate-400">Empresa Confirmada</span>
+          <p class="text-lg font-bold text-emerald-400 mt-1">12</p>
+        </div>
+        <div class="bg-[#08080a] border border-amber-500/20 p-2.5 rounded-lg text-center">
+          <span class="text-[11px] text-slate-400">Empresa Candidata</span>
+          <p class="text-lg font-bold text-amber-400 mt-1">18</p>
+        </div>
+        <div class="bg-[#08080a] border border-blue-500/20 p-2.5 rounded-lg text-center">
+          <span class="text-[11px] text-slate-400">Texto Legado</span>
+          <p class="text-lg font-bold text-blue-400 mt-1">15</p>
+        </div>
+        <div class="bg-[#08080a] border border-rose-500/20 p-2.5 rounded-lg text-center">
+          <span class="text-[11px] text-slate-400">Ausente</span>
+          <p class="text-lg font-bold text-slate-400 mt-1">5</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card de Exemplo de Alvo Prioritário -->
+    <div class="bg-[#111116] border border-emerald-500/30 rounded-xl p-4">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded bg-cyan-500/20 text-cyan-400 font-bold flex items-center justify-center text-xs">A</span>
+          <div>
+            <h4 class="text-sm font-bold text-white">Carlos Eduardo Silva</h4>
+            <p class="text-xs text-slate-400">CFO na Indústrias Matarazzo S.A. (CONFIRMED)</p>
+          </div>
+        </div>
+        <span class="text-emerald-400 font-mono text-sm font-bold bg-emerald-500/10 px-3 py-1 rounded border border-emerald-500/20">+45 pts</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

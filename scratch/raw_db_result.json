@@ -1,0 +1,5 @@
+{
+  "query": "select id, nome, empresa, parceiro_id, slug, linkedin_key, created_at from taxmanagers_leads where id = '42e88a03-7b19-48cb-b590-7fcaef4987ab';",
+  "data": [],
+  "error": null
+}
