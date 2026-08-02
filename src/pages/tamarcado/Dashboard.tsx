@@ -13,6 +13,20 @@ export default function TamarcadoDashboard() {
   const { user, isLoading: authLoading, loginMutation, registerMutation } = useAuth();
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [authTab, setAuthTab] = useState<"login" | "register">("login");
+  const [registerUsername, setRegisterUsername] = useState("");
+  
+  const [profile, setProfile] = useState<any>(null);
+  const [eventTypes, setEventTypes] = useState<any[]>([]);
+  const [bookings, setBookings] = useState<any[]>([]);
+  const [availability, setAvailability] = useState<any>(null);
+  
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  
+  const [slug, setSlug] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     if (user) {
