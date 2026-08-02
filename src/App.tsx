@@ -1,8 +1,9 @@
-import { Switch, Route, useLocation } from "wouter";
+import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "./components/ui/toaster.tsx";
 import NotFound from "./pages/not-found";
+import { AuthProvider } from "./hooks/use-auth";
 
 // Rotas do TáMarcado (Calendly Clone MVP)
 import TamarcadoDashboard from "./pages/tamarcado/Dashboard";
@@ -19,22 +20,12 @@ function Router() {
 }
 
 function App() {
-  const [wouterLocation] = useLocation();
-  const location = typeof window !== "undefined" ? window.location.pathname : wouterLocation;
-
-  // Rota pública de agendamento do TáMarcado
-  if (location.startsWith("/book/")) return (
-    <QueryClientProvider client={queryClient}>
-      <Toaster />
-      <PublicBooking />
-    </QueryClientProvider>
-  );
-
-  // Dashboard do TáMarcado
   return (
     <QueryClientProvider client={queryClient}>
-      <Toaster />
-      <TamarcadoDashboard />
+      <AuthProvider>
+        <Router />
+        <Toaster />
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
