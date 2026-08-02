@@ -162,9 +162,6 @@ export default function TamarcadoDashboard() {
     }
   }
 
-  const [authTab, setAuthTab] = useState<"login" | "register">("login");
-  const [registerUsername, setRegisterUsername] = useState("");
-
   if (loading || authLoading) return <div className="p-8 text-center">Carregando...</div>;
 
   if (!user) {
